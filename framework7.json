@@ -1,0 +1,19 @@
+{
+  "cwd": "/Users/hgkang1203/Documents/vs-code/myApp",
+  "type": [
+    "web",
+    "pwa"
+  ],
+  "name": "My App",
+  "framework": "core",
+  "template": "tabs",
+  "bundler": "vite",
+  "cssPreProcessor": false,
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkMode": false,
+    "iconFonts": true
+  },
+  "customBuild": false
+}
