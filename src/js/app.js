@@ -27,7 +27,7 @@ function getCurrentLocation () {
         }, 
         function() {
           console.log('get geoError currentGeoLoc unchanged')
-        }
+        } 
       );
     } else {
       console.log('GPS를 지원하지 않습니다')
