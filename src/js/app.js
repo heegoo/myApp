@@ -15,7 +15,7 @@ window.currentGeoLoc = { //GeolocationPosition
     longitude: 126.570667
   }
 };
-console.log('default currentGeoLoc',window.currentGeoLoc)
+//console.log('default currentGeoLoc',window.currentGeoLoc)
 
 function getCurrentLocation () {
 
