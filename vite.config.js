@@ -23,6 +23,7 @@ export default async () => {
       rollupOptions: {
         treeshake: false,
       },
+      chunkSizeWarningLimit: 1600,
     },
     resolve: {
       alias: {

@@ -1,31 +1,5 @@
 # My App
 
-## Framework7 CLI Options
-
-Framework7 app created with following options:
-
-```
-{
-  "cwd": "/Users/hgkang1203/Documents/vs-code/myApp",
-  "type": [
-    "web",
-    "pwa"
-  ],
-  "name": "My App",
-  "framework": "core",
-  "template": "tabs",
-  "bundler": "vite",
-  "cssPreProcessor": false,
-  "theming": {
-    "customColor": false,
-    "color": "#007aff",
-    "darkMode": false,
-    "iconFonts": true
-  },
-  "customBuild": false
-}
-```
-
 ## Install Dependencies
 
 First of all we need to install dependencies, run in terminal
