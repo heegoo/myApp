@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "description": "My App",
   "repository": "",
+  "engines": {
+    "node": "^16.0.0"
+  },
   "license": "UNLICENSED",
   "scripts": {
     "start": "npm run dev",
