@@ -5,7 +5,7 @@
   "description": "My App",
   "repository": "",
   "engines": {
-    "node": "^16.0.0"
+    "node": ">=16.0.0 <18"
   },
   "license": "UNLICENSED",
   "scripts": {
