@@ -62,9 +62,6 @@
             <a href="/dynamic-route/blog/45/post/125/?foo=bar#about">Dynamic (Component) Route</a>
           </li>
           <li>
-            <a href="/map/">Map Dynamic (Component) Route</a>
-          </li>
-          <li>
             <a href="/load-something-that-doesnt-exist/">Default Route (404)</a>
           </li>
           <li>
