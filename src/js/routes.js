@@ -26,7 +26,72 @@ var routes = [
   },
   {
     path: '/map/',
-    component: MapPage,
+    // component: MapPage,
+    async: function ({ router, to, resolve }) {
+      // App instance
+      var app = router.app;
+
+      function getCurrentLocation () {
+        var options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+          };
+        function success(position) {
+            console.log('success currentGeoLoc',position)
+            window.currentGeoLoc = position;
+
+            // Hide Preloader
+            app.preloader.hide();
+      
+            // Resolve route to load page
+            resolve(
+              {
+                component: MapPage,
+              },
+            );
+      
+          }
+        function error() {
+            // Hide Preloader
+            app.preloader.hide();
+            console.log('get geoError currentGeoLoc unchanged')
+        } 
+  
+        if (navigator.geolocation) {
+            // Show Preloader
+            app.preloader.show();
+
+          navigator.geolocation.getCurrentPosition(success,error, options);
+        } else {
+          console.log('GPS를 지원하지 않습니다')
+        }
+      }
+  
+      if( !window.currentGeoLoc )
+        getCurrentLocation();
+      else {
+        console.log('if currentGeoLoc', window.currentGeoLoc)
+        // Show Preloader
+        app.preloader.show();
+
+        // Simulate Ajax Request
+        setTimeout(function () {
+          // We got user data from request
+  
+          // Hide Preloader
+          app.preloader.hide();
+  
+          // Resolve route to load page
+          resolve(
+            {
+              component: MapPage,
+            },
+          );
+        }, 1000);
+
+      }
+    },
   },
   {
     path: '/catalog/',

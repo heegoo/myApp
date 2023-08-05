@@ -11,7 +11,7 @@ import $ from 'dom7';
 const myMap = {
     kakao : {},
     map : {},
-    // mapContainer : null,
+    mapContainer : undefined,
     // 장소 검색 객체를 생성합니다
     ps : {},
     // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
@@ -19,36 +19,54 @@ const myMap = {
     
     // 마커를 담을 배열입니다
     markers : [],
-    fn_search: {},
+    fn_search: undefined,
 
-    CreateMap: function (kakao, mapContainer,  mapOption, fn_search) {
+    CreateMap: function (kakao, mapContainer,  mapOption) {
             // mapContainer = document.getElementById('map'); // 지도를 표시할 div 
             // var mapOption = { 
             //     center: new kakao.maps.LatLng(startPos.coords.latitude, startPos.coords.longitude), // 지도의 중심좌표
             //     level: 3 // 지도의 확대 레벨
             // };
             this.kakao = kakao;
-            // mapContainer = mapContainer;
+            this.mapContainer = mapContainer;
             // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니g다
             this.map = new kakao.maps.Map(mapContainer, mapOption); 
-            
             // 장소 검색 객체를 생성합니다
             this.ps = new kakao.maps.services.Places(); 
             
             this.infowindow = new kakao.maps.InfoWindow({zIndex:1});
-            this.fn_search = fn_search;
+
+            // this.mapContainer.addEventListener('resize', function() {
+            //     myMap.resizeMap();
+            // });
     },
 
-    ChangeMap: function (mapOption, fn_search) {
-        // mapContainer = document.getElementById('map'); // 지도를 표시할 div 
-        // var mapOption = { 
-        //     center: new kakao.maps.LatLng(startPos.coords.latitude, startPos.coords.longitude), // 지도의 중심좌표
-        //     level: 3 // 지도의 확대 레벨
-        // };
+    SearchMap: function (mapOption, fn_search) {
         this.map.setCenter(mapOption.center); 
         this.map.setLevel(mapOption.level); 
         
         this.fn_search = fn_search;
+    },
+    // 지도를 표시하는 div 크기를 변경하는 함수입니다
+    resizeMap: function () {
+        // var mapContainer = document.getElementById('map');
+        var mapWrap = $('div.map_wrap');
+        // document.querySelector('div.map_wrap');
+        // console.log('resize',mapWrap.style)
+        this.mapContainer.style.width = mapWrap.width();
+        this.mapContainer.style.height = mapWrap.height(); 
+        $(this.mapContainer).trigger('resize');
+        console.log('resize',mapWrap.width())
+        this.map.relayout();
+    },
+
+    
+    relayout: function () {    
+        console.log('relayout')
+        // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+        // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+        // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+        // this.map.relayout();
     },
 
 // 검색 결과 목록과 마커를 표출하는 함수입니다
