@@ -172,7 +172,7 @@
   </div>
 </template>
 <style>
-    #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:400px;float:left;margin:10px 0 30px 10px;padding:5px;overflow:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+  #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:100%;float:left;margin:10px 0 30px 10px;padding:5px;overflow:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
   .bg_white {background:#fff;}
   #search-form {--f7-button-height:18px;}
   #placesList li {list-style: none;}
