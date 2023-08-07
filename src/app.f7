@@ -25,11 +25,10 @@
           <div class="navbar">
             <div class="navbar-bg"></div>
             <div class="navbar-inner">
-              <div class="title">Right Panel</div>
+              <div class="title">검색 결과</div>
             </div>
           </div>
           <div class="page-content">
-            <div class="block">Right panel content goes here</div>
             <div id="menu_wrap" class="list">
                   <form id="search-form" >
                   <ul>
@@ -172,14 +171,15 @@
   </div>
 </template>
 <style>
-  #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:100%;float:left;margin:10px 0 30px 10px;padding:5px;overflow:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+  #menu_wrap {position:absolute;top:54px;left:0;bottom:0;float:left;margin:5px 5px 6px 10px;padding:5px;
+    overflow:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
   .bg_white {background:#fff;}
   #search-form {--f7-button-height:18px;}
   #placesList li {list-style: none;}
   #placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
   #placesList .item span {display: block;margin-top:4px;}
-  #placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-  #placesList .item .info{padding:10px 0 10px 55px;}
+  #placesList .item h5, #placesList .item .info, #placesList .item .searchDiv {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+  #placesList .item .info, #placesList .item .searchDiv {padding:10px 10px 10px 55px;}
   #placesList .info .gray {color:#8a8a8a;}
   #placesList .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
   #placesList .info .tel {color:#009900;}
