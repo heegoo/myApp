@@ -302,7 +302,7 @@
         map.setBounds(bounds);
     }
 
-    // 검색 결과 목록과 마커를 표출하는 함수입니다
+    // 검색 결과 목록 표출하는 함수입니다
     function displayPlaces (places) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
         var listEl = document.querySelector('#placesList'), 
@@ -322,16 +322,17 @@
                 // blocEl = getItemInfo(i, places[i]), 
                 // searchEl = getSearchButton(places[i]);
 
-            // 마커와 검색결과 항목에 mouseover 했을때
+              var infoEl = itemEl.querySelector('.info');
+            // 검색결과 항목에 mouseover 했을때
             // 해당 장소에 인포윈도우에 장소명을 표시합니다
             // mouseout 했을 때는 인포윈도우를 닫습니다
             (function(marker, title, x, y) {
 
-                itemEl.onmouseover =  function () {
+                infoEl.onmouseover =  function () {
                     displayInfowindow(marker, title);
                 };
 
-                itemEl.onmouseout =  function () {
+                infoEl.onmouseout =  function () {
                     infowindow.close();
                 };
                 // searchEl.addEventListener('click', 
@@ -434,10 +435,8 @@
       el.innerHTML = '검색';
       el.className = 'searchByPosition';
       el.id = 'place_'+places.id;
-      el.onclick = function() { searchPlacesByPosition(places.x, places.y) };
-      // el.onclick = (function(x,y){
-      //     myMap.fn_search(x,y);
-      // })(places.x, places.y);
+      // el.onclick = function() { searchPlacesByPosition(places.x, places.y) };
+      el.onclick = (function(x,y){ searchPlacesByPosition(x,y) })(places.x, places.y);
 
       return el.outerHTML;
     }
