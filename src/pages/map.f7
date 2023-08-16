@@ -41,10 +41,6 @@
     // 마커를 담을 배열입니다
     var markers = [];
 
-    // t2의 콘텐츠를 바꾸는 함수
-    function modifyMap() {
-    }
-
     // mapContainer.addEventListener("modifyMap", modifyMap, false);
 
     // function getCurrentLocation () {
@@ -74,7 +70,6 @@
 
     startPos = window.currentGeoLoc;  //.startPos;
 
-    
     $on('pageInit', (e, page) => {
         console.log('pageInit', page);
 
@@ -91,7 +86,6 @@
 
     $on('pageAfterIn', (e, page) => {
         console.log('pageAfterIn', page);
-
 
         if( kakao && kakao.maps ) {
             // kakao.maps.load(() => {
@@ -126,7 +120,7 @@
 
             displayMarkers(placesResult);
 
-    })
+    });
 
     // 지도를 표시하는 div 크기를 변경하는 함수입니다
     function resizeMap () {
@@ -318,9 +312,7 @@
             // 마커를 생성하고 지도에 표시합니다
             var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
                 marker = addMarker(placePosition, i),
-                itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-                // blocEl = getItemInfo(i, places[i]), 
-                // searchEl = getSearchButton(places[i]);
+                itemEl = getListItem(i, places[i], {x:places[i].y, y:places[i].x}); // 검색 결과 항목 Element를 생성합니다
 
               var infoEl = itemEl.querySelector('.info');
             // 검색결과 항목에 mouseover 했을때
@@ -328,36 +320,32 @@
             // mouseout 했을 때는 인포윈도우를 닫습니다
             (function(marker, title, x, y) {
 
-                infoEl.onmouseover =  function () {
+                $(infoEl).on('mouseover', function () {
                     displayInfowindow(marker, title);
-                };
+                });
 
-                infoEl.onmouseout =  function () {
+                $(infoEl).onmouseout =  function () {
                     infowindow.close();
                 };
-                // searchEl.addEventListener('click', 
-                //                             function () {
-                //                                 console.log('click searchByPosition')
-                //                                 searchPlacesByPosition(places[i].x, places[i].y);
-                //                                 return false;
-                //                             }, false);
-                // searchEl.onclick = 
-                //                             function () {
-                //                                 console.log('click searchByPosition')
-                //                                 searchPlacesByPosition(x, y);
-                //                                 // return false;
-                //                             };
     
             })(marker, places[i].place_name, places[i].x, places[i].y);
 
             fragment.appendChild(itemEl);
-            // fragment.appendChild(searchEl);
         }
 
         // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
         listEl.appendChild(fragment);
         menuEl.scrollTop = 0;
-    }
+
+        // var searchEl = $('#place_'+places[i].id);
+        $('.searchByPosition').on('click',function (e) {
+          var position = $(this).dataset()
+          searchPlacesByPosition(position.x, position.y);
+          console.log('click searchByPosition : ',position)
+        });
+        
+      }
+
 
     
     // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
@@ -366,11 +354,12 @@
         var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
 
         infowindow.open(map, marker);
+        infowindow.setContent(content);
     }
 
 
     // 검색결과 항목을 Element로 반환하는 함수입니다
-    function getListItem(index, places) {
+    function getListItem(index, places, placePosition) {
 
         var el = document.createElement('li'),
         itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
@@ -387,60 +376,15 @@
         itemStr += '  <span class="tel">' + places.phone  + '</span>' +
         '</div>';           
 
-        itemStr += getSearchDiv(places);
-
-// itemStr += ' <a href="#" class="searchByPosition" >검색</a>';
-        // itemStr += ' <button id="place_'+places.id+'" class="searchByPosition" onclick="(function(x,y){myMap.fn_search(x,y);})('+places.x+','+places.y+')">검색</button>';
-        // itemStr += ' <button id="place_'+places.id+'" class="searchByPosition" onclick="(function(x,y){searchPlacesByPosition(x,y)})('+places.x+','+places.y+')">검색</button>';
-        // itemStr += ' <button id="place_'+places.id+'" class="searchByPosition" onclick="searchPlacesByPosition('+places.x+','+places.y+')">검색</button>';
+        itemStr += '<div class="searchDiv">';
+        itemStr += ' <button id="place_'+places.id+'" class="searchByPosition" data-x="'+placePosition.x+'" data-y="'+placePosition.y+'">주변 검색</button>';
+        itemStr += '</div>';
 
         el.innerHTML = itemStr;
         el.className = 'item';
 
         return el;
     }
-
-    // 검색결과 항목을 Element로 반환하는 함수입니다
-    // /wnter BO function (places) {
-
-    //     var el = document.createElement('button');
-    //     el.innerHTML = '검색';
-    //  getSearchButton  el.id = 'place_'+places.id;
-    //     // el.addEventListener('click', 
-    //     //                                     function () {
-    //     //                                         console.log('click searchByPosition')
-    //     //                                         myMap.fn_search(places.x, places.y);
-    //     //                                     }, false);
-    //     el.onclick = function() { myMap.fn_search(places.x, places.y) };
-    //     // el.onclick = (function(x,y){
-    //     //     myMap.fn_search(x,y);
-    //     // })(places.x, places.y);
-
-    //     return el;
-    // }
-
-    // 개별 검색 항목을 Element로 반환하는 함수입니다
-    function getSearchDiv(places) {
-
-      var el = document.createElement('Div');
-      el.innerHTML = getSearchButton(places);;
-      el.className = 'searchDiv';
-
-      return el.outerHTML;
-    }
-
-    function getSearchButton(places) {
-
-      var el = document.createElement('button');
-      el.innerHTML = '검색';
-      el.className = 'searchByPosition';
-      el.id = 'place_'+places.id;
-      // el.onclick = function() { searchPlacesByPosition(places.x, places.y) };
-      el.onclick = (function(x,y){ searchPlacesByPosition(x,y) })(places.x, places.y);
-
-      return el.outerHTML;
-    }
-
 
     // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
     function addMarker(position, idx, title) {
@@ -490,11 +434,11 @@
             if (i===pagination.current) {
                 el.className = 'on';
             } else {
-                el.onclick = (function(i) {
+                $(el).on('click',(function(i) {
                     return function() {
                         pagination.gotoPage(i);
                     }
-                })(i);
+                })(i));
             }
 
             fragment.appendChild(el);
