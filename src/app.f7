@@ -29,23 +29,28 @@
             </div>
           </div>
           <div class="page-content">
-            <div id="menu_wrap" class="list">
-                  <form id="search-form" >
-                  <ul>
-                    <li class="item-content item-input item-input-outline">
-                        <div class="item-inner">
-                        <div class="item-title item-floating-label">아는단어:</div>
-                        <div class="item-input-wrap block block-strong-ios block-outline-ios ">
-                          <div class="grid grid-cols-3">
-                            <input type="text" id="keyword" name="keyword" size="15" ></input>
-                            <a class="button button-outline button-small convert-form-to-data" href="#">검색하기</a>
-                            <a class="button button-outline button-small move-to-current" href="#">현위치</a>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                  </form>
+            <div  class="list list-strong inset" id="menu_wrap">
+              <form id="search-form" >
+                <ul>
+                <li class="item-content item-title item-label">아는 단어</li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media">
+                      <i class="icon icon-f7"></i>
+                    </div>
+                    <div class="item-inner">
+                      <input type="text" class="input\" id="keyword" name="placeHolder"></input>
+                      <div class="item-after convert-form-to-data ">검색하기</div>
+                    </div>
+                  </div>
+                </li>
+                </ul>
+              </form>
+            </div>
+            <div class="block">
+              <a href="#" class="move-to-current button button-outline" data-x="" data-y="">현위치 재검색</a>
+            </div>
+            <div class="block">
                   <ul id="placesList"  ></ul>
                   <div id="pagination" ></div>
             </div>
@@ -171,10 +176,10 @@
   </div>
 </template>
 <style>
-  #menu_wrap {position:absolute;top:54px;left:0;bottom:0;float:left;margin:5px 5px 6px 10px;padding:5px;
-    overflow:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
-  .bg_white {background:#fff;}
-  #search-form {--f7-button-height:18px;}
+  /* #menu_wrap {position:absolute;top:54px;left:0;bottom:0;float:left;margin:5px 5px 6px 10px;padding:5px;
+    overflow:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;} */
+  /* .bg_white {background:#fff;} */
+  /* #search-form {--f7-button-height:18px;} */
   #placesList li {list-style: none;}
   #placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
   #placesList .item span {display: block;margin-top:4px;}

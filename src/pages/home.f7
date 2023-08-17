@@ -19,6 +19,7 @@
 
     <!-- Scrollable page content-->
     <div class="page-content">
+  
       <div class="block">
         <p>This is an example of tabs-layout application. The main point of such tabbed layout is that each tab contains independent view with its own routing and navigation.</p>
 

@@ -26,7 +26,7 @@
   .map_wrap {position:relative;height:100%;}
 </style>  
 <script>
-  export default (props, { $, $7, $store, $on }) => {
+  export default (props, { $, $$, $f7, $store, $on }) => {
     const {kakao} = window;
 
     var startPos;  //.startPos;
@@ -144,7 +144,7 @@
         // // var keyword = document.getElementById('keyword').value;
         // console.log('키워드를 입력!', keyword);
   
-        if (!keyword.replace(/^\s+|\s+$/g, '')) {
+        if ( !keyword || !keyword.replace(/^\s+|\s+$/g, '') ) {
             // console.log('키워드를 입력해주세요!');
             // return; // false;
             keyword = '약국';
@@ -186,6 +186,8 @@
           keyword = '약국';
           // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
           console.log({x:x, y:y, bounds:bounds,})
+          $('.move-to-current').data('x', x);
+          $('.move-to-current').data('y', y);
           ps.setMap(map);
           map.setCenter(mapOption.center); 
           map.setLevel(mapOption.level); 
@@ -377,10 +379,8 @@
         '</div>';           
 
         itemStr += '<div class="searchDiv">';
-        itemStr += ' <button id="place_'+places.id+'" class="searchByPosition" data-x="'+placePosition.x+'" data-y="'+placePosition.y+'">주변 검색</button>';
-        itemStr += '</div>';
+        itemStr += ' <button id="place_'+places.id+'" class="searchByPosition" data-x="'+placePosition.x+'" data-y="'+placePosition.y+'">周邊 검색</button>';
 
-        el.innerHTML = itemStr;
         el.className = 'item';
 
         return el;

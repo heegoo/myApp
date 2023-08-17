@@ -1,6 +1,7 @@
 import $ from 'dom7';
-import Framework7 from 'framework7/bundle';
+import Framework7, {Dom7, getDevice, createStore, utils, getSupport} from 'framework7/bundle';
 
+var $$ = Dom7;
 // Import F7 Styles
 import 'framework7/css/bundle';
 
