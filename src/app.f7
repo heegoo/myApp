@@ -29,27 +29,6 @@
             </div>
           </div>
           <div class="page-content">
-            <div  class="list list-strong inset" id="menu_wrap">
-              <form id="search-form" >
-                <ul>
-                <li class="item-content item-title item-label">아는 단어</li>
-                <li>
-                  <div class="item-content">
-                    <div class="item-media">
-                      <i class="icon icon-f7"></i>
-                    </div>
-                    <div class="item-inner">
-                      <input type="text" class="input\" id="keyword" name="placeHolder"></input>
-                      <div class="item-after convert-form-to-data ">검색하기</div>
-                    </div>
-                  </div>
-                </li>
-                </ul>
-              </form>
-            </div>
-            <div class="block">
-              <a href="#" class="move-to-current button button-outline" data-x="" data-y="">현위치 재검색</a>
-            </div>
             <div class="block">
                   <ul id="placesList"  ></ul>
                   <div id="pagination" ></div>
@@ -210,7 +189,7 @@
 
 </style>
 <script>
-  export default (props, { $f7, $update }) => {
+  export default (props, { $, $f7, $update }) => {
     // Login screen demo data
     let username = '';
     let password = '';
